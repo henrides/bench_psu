@@ -1,0 +1,73 @@
+
+**** 08/07/19 11:01:17 ******* PSpice 16.2.0 (Oct 2008) ******* ID# 0 ********
+
+ ** Profile: "SCHEMATIC1-TRAN"  [ C:\Users\a0867324\TI Drive\SPICE Models\CSM_Models\INA180\INA180_PSPICE_AIO_RevB\ina180-pspicefiles
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "tran.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.LIB "../../../ina180a4.lib" 
+.LIB "../../../ina180a3.lib" 
+.LIB "../../../ina180a2.lib" 
+.LIB "../../../ina180a1.lib" 
+* From [PSPICE NETLIST] section of C:\Cadence\SPB_16.2\tools\PSpice\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 300us 0 
+.PROBE V(*) I(*) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source INA180
+I_I1         N72671 0 DC 0Adc AC 0Aac
++PULSE 17.5 7.5 100n 1n 1n 0.05m 0.1m
+I_I2         N75102 0 DC 0Adc AC 0Aac
++PULSE 17.5 7.5 100n 1n 1n 0.05m 0.1m
+V_V5         N75756 0 12Vdc
+V_V3         N72501 0 12Vdc
+R_R5         N75774 N75756  2m TC=0,0 
+R_R8         0 OUT_A4  10k TC=0,0 
+X_U2         N75084 N75102 VCC 0 OUT_A2 INA180A2 
+V_V4         N75084 0 12Vdc
+R_R1         N72671 N72501  10m TC=0,0 
+R_R3         N75102 N75084  4m TC=0,0 
+E_E2         VMID 0 VCC 0 0.5
+X_U4         N76389 N76407 VCC 0 OUT_A4 INA180A4 
+I_I4         N76407 0 DC 0Adc AC 0Aac
++PULSE 17.5 7.5 100n 1n 1n 0.05m 0.1m
+R_R6         0 OUT_A3  10k TC=0,0 
+X_U1         N72501 N72671 VCC 0 OUT_A1 INA180A1 
+R_R2         0 OUT_A1  10k TC=0,0 
+V_V6         N76389 0 12Vdc
+R_R7         N76407 N76389  1m TC=0,0 
+V_V2         VCC 0 5Vdc
+R_R4         0 OUT_A2  10k TC=0,0 
+X_U3         N75756 N75774 VCC 0 OUT_A3 INA180A3 
+I_I3         N75774 0 DC 0Adc AC 0Aac
++PULSE 17.5 7.5 100n 1n 1n 0.05m 0.1m
+
+**** RESUMING tran.cir ****
+.END
+
+WARNING -- Library file "C:\Users\a0867324\TI Drive\SPICE Models\CSM_Models\INA180\INA180_PSPICE_AIO_RevB\ina180a4.lib" has changed since index file ina180a4.ind was created.
+WARNING -- The timestamp changed from Wed Jun 26 13:21:25 2019 to Wed Aug 07 11:01:11 2019.
+Making new index file ina180a4.ind for library file ina180a4.lib
+Index has 17 entries from 1 file(s).
+
+
+ERROR -- Subcircuit _INA180A4 used by X_U4.X_U37 is undefined

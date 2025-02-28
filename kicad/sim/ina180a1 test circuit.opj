@@ -1,0 +1,68 @@
+(ExpressProject "INA180A1 Test Circuit"
+  (ProjectVersion "19981106")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File ".\library\ina180a1.olb"
+        (Type "Schematic Library")))
+    (NoModify)
+    (File ".\ina180a1 test circuit.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE"))
+  (Folder "Outputs"
+    (File ".\ina180a1 test circuit-pspicefiles\schematic1\schematic1.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (ActiveProfile
+         ".\ina180a1 test circuit-pspicefiles\schematic1\transient.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\ina180a1 test circuit-pspicefiles\schematic1\transient.sim"
+        (DisplayName "SCHEMATIC1-TRANSIENT")
+        (Type "PSpice Profile")))
+    (Folder "Model Libraries"
+      (Sort User)
+      (File ".\ina180a1.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName ".\ina180a1.lib")))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (PartMRUSelector
+    (INA180A1
+      (FullPartName "INA180A1.Normal")
+      (LibraryName
+         "C:\MACROMODELS\PSPICE LIBRARY\^INA180\INA180A1_PSPICE\INA180A1.OLB")
+      (DeviceIndex "0"))
+    (0
+      (LibraryName "C:\CADENCE\SPB_16.6\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0")))
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources" ".\ina180a1 test circuit.dsn")
+      (Path "Design Resources" "Library")
+      (Path "Outputs")
+      (Select "Design Resources" "Library" ".\library\ina180a1.olb"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 2 3 -1 -1 -8 -31 0 200 0 430"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -8 -31 78 1752 78 547")
+        (Scroll "0 276")
+        (Zoom "200")
+        (Occurrence "/"))
+      (Path
+         "C:\MACROMODELS\PSPICE LIBRARY\^INA180\INA180A1_PSPICE\INA180A1 TEST CIRCUIT.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1")))
+  (MPSSessionName "a0282827"))

@@ -1,0 +1,89 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "cf7abb6a-5656-4328-9bab-efa841eff83a")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 24.13 27.94)
+		(size 40.64 10.16)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "30b23c84-1005-489d-b993-144153dedf2c")
+		(property "Sheetname" "Regulation"
+			(at 24.13 27.2284 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Regulation/Regulation.kicad_sch"
+			(at 24.13 38.6846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Bench_PSU"
+				(path "/cf7abb6a-5656-4328-9bab-efa841eff83a"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 24.13 48.26)
+		(size 40.64 10.16)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "4ddd7636-9de5-4e7f-93e4-3bc9c71de85a")
+		(property "Sheetname" "Control"
+			(at 24.13 47.5484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Control/Control.kicad_sch"
+			(at 24.13 59.0046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Bench_PSU"
+				(path "/cf7abb6a-5656-4328-9bab-efa841eff83a"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

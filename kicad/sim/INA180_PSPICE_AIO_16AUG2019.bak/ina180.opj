@@ -1,0 +1,147 @@
+(ExpressProject "INA180"
+  (ProjectVersion "19981106")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File ".\library\ina180a1.olb"
+        (Type "Schematic Library"))
+      (File ".\library\ina180a2.olb"
+        (Type "Schematic Library"))
+      (File ".\library\ina180a3.olb"
+        (Type "Schematic Library"))
+      (File ".\library\ina180a4.olb"
+        (Type "Schematic Library")))
+    (NoModify)
+    (File ".\ina180.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE")
+    (RootChangedForceReNetlist "x"))
+  (Folder "Outputs"
+    (File ".\ina180-pspicefiles\schematic1\schematic1.net"
+      (Type "Report"))
+    (File ".\ina180-pspicefiles\ac_resp\ac_resp.net"
+      (Type "Report"))
+    (File ".\ina180-pspicefiles\pulseresp\pulseresp.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\ina180-pspicefiles\pulseresp\tran.sim"
+        (DisplayName "PULSERESP-tran")
+        (Type "PSpice Profile"))
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\ina180-pspicefiles\ac_resp\ac.sim"
+        (DisplayName "AC_RESP-AC")
+        (Type "PSpice Profile"))
+      (ActiveProfile ".\ina180-pspicefiles\pulseresp\tran.sim"))
+    (Folder "Model Libraries"
+      (Sort User)
+      (File ".\ina180a4.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName ".\ina180a4.lib"))
+      (File ".\ina180a3.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName ".\ina180a3.lib"))
+      (File ".\ina180a2.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName ".\ina180a2.lib"))
+      (File ".\ina180a1.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName ".\ina180a1.lib")))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (PartMRUSelector
+    (INA180A4
+      (FullPartName "INA180A4.Normal")
+      (LibraryName
+         "C:\USERS\A0867324\TI DRIVE\SPICE MODELS\CSM_MODELS\INA180\INA180_PSPICE_AIO_REVB\LIBRARY\INA180A4.OLB")
+      (DeviceIndex "0"))
+    (INA180A3
+      (FullPartName "INA180A3.Normal")
+      (LibraryName
+         "C:\USERS\A0867324\TI DRIVE\SPICE MODELS\CSM_MODELS\INA180\INA180_PSPICE_AIO_REVB\LIBRARY\INA180A3.OLB")
+      (DeviceIndex "0"))
+    (INA180A2
+      (FullPartName "INA180A2.Normal")
+      (LibraryName
+         "C:\USERS\A0867324\TI DRIVE\SPICE MODELS\CSM_MODELS\INA180\INA180_PSPICE_AIO_REVB\LIBRARY\INA180A2.OLB")
+      (DeviceIndex "0"))
+    (0
+      (LibraryName
+         "C:\CADENCE\SPB_16.2\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (VPULSE
+      (FullPartName "VPULSE.Normal")
+      (LibraryName
+         "C:\CADENCE\SPB_16.2\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (VDC
+      (FullPartName "VDC.Normal")
+      (LibraryName
+         "C:\CADENCE\SPB_16.2\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (E
+      (FullPartName "E.Normal")
+      (LibraryName
+         "C:\CADENCE\SPB_16.2\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (INA180A1
+      (FullPartName "INA180A1.Normal")
+      (LibraryName
+         "C:\USERS\A0867324\TI DRIVE\SPICE MODELS\CSM_MODELS\INA180\INA180_PSPICE_AIO_REVB\LIBRARY\INA180A1.OLB")
+      (DeviceIndex "0"))
+    (INA181A4
+      (FullPartName "INA181A4.Normal")
+      (LibraryName
+         "C:\USERS\A0867324\DOCUMENTS\DOCS-PROJECTS\SPICE MODELS\AIP_MODELS\INA181\INA181_PSPICE_AIO\INA181A4.OLB")
+      (DeviceIndex "0"))
+    (INA181A3
+      (FullPartName "INA181A3.Normal")
+      (LibraryName
+         "C:\USERS\A0867324\DOCUMENTS\DOCS-PROJECTS\SPICE MODELS\AIP_MODELS\INA181\INA181_PSPICE_AIO\INA181A3.OLB")
+      (DeviceIndex "0"))
+    (INA181A2
+      (FullPartName "INA181A2.Normal")
+      (LibraryName
+         "C:\USERS\A0867324\DOCUMENTS\DOCS-PROJECTS\SPICE MODELS\AIP_MODELS\INA181\INA181_PSPICE_AIO\INA181A2.OLB")
+      (DeviceIndex "0"))
+    (IPULSE
+      (FullPartName "IPULSE.Normal")
+      (LibraryName
+         "C:\CADENCE\SPB_16.2\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName
+         "C:\CADENCE\SPB_16.2\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (INA181A1
+      (FullPartName "INA181A1.Normal")
+      (LibraryName
+         "C:\USERS\A0867324\DOCUMENTS\DOCS-PROJECTS\SPICE MODELS\AIP_MODELS\INA181\INA181_PSPICE_AIO\INA181A1.OLB")
+      (DeviceIndex "0")))
+  (MPSSessionName "a0867324")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources"
+         "C:\Users\a0867324\TI Drive\SPICE Models\CSM_Models\INA180\INA180_PSPICE_AIO_RevB\ReleaseFiles\ina180.dsn")
+      (Path "Design Resources"
+         "C:\Users\a0867324\TI Drive\SPICE Models\CSM_Models\INA180\INA180_PSPICE_AIO_RevB\ReleaseFiles\ina180.dsn"
+         "AC_RESP")
+      (Path "Design Resources" "Library")
+      (Path "Outputs")
+      (Path "PSpice Resources")
+      (Path "PSpice Resources" "Model Libraries")
+      (Path "PSpice Resources" "Simulation Profiles"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 2 3 -1 -1 -8 -30 0 200 0 301"))
+      (Tab 0))))
