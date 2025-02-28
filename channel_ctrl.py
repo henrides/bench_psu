@@ -25,7 +25,7 @@ class ChannelStatus():
         return self._i_set
 
     def output_enable(self):
-        return this._output_enable
+        return self._output_enable
 
 class ChannelCtrl():
     def __init__(self, channel1, channel2):
