@@ -18,9 +18,7 @@ class ChannelView():
                  coarse_encoder,
                  coarse_encoder_button,
                  fine_encoder,
-                 fine_encoder_button,
-                 ch1_out_en_button,
-                 ch2_out_en_button) -> None:
+                 fine_encoder_button) -> None:
         self._ctrl = ctrl
         self._width = 128
         self._height = 64
@@ -29,7 +27,6 @@ class ChannelView():
                                               self._width,
                                               self._height,
                                               framebuf.MONO_VLSB)
-        self._init_framebuffer()
         self._driver = display_driver
 
         self._coarse_encoder = coarse_encoder
@@ -48,15 +45,22 @@ class ChannelView():
                                    V_SET_FINE_INCREMENT,
                                    I_SET_FINE_INCREMENT))
 
-        self._i_set = { 1: 0, 2: 0 }
-        self._i_selected_channel = None
-        self._v_set = { 1: 0, 2: 0 }
-        self._v_selected_channel = None
+        self._channels = self._ctrl.get_channels()
 
-        self._ch1_out_en_button_task = asyncio.create_task(
-                self._out_enable_press(ch1_out_en_button, 1))
-        self._ch2_out_en_button_task = asyncio.create_task(
-                self._out_enable_press(ch2_out_en_button, 2))
+        self._i_set = {}
+        self._v_set = {}
+        self._ch_out_en_button_task = {}
+
+        for chan in self._channels:
+            self._i_set[chan] = 0
+            self._v_set[chan] = 0
+            out_en_button = self._ctrl.get_channel_output_enable_button(chan)
+            self._ch_out_en_button_task[chan] = asyncio.create_task(
+                    self._out_enable_press(out_en_button, chan))
+
+        self._init_framebuffer()
+        self._i_selected_channel = None
+        self._v_selected_channel = None
 
         self._edit_mode = False
         self._last_change_ticks = 0
@@ -65,19 +69,15 @@ class ChannelView():
 
     def _init_framebuffer(self):
         self._framebuf.fill(0)
-        # Channel 1
-        x_offset = 0
-        self._framebuf.rect(1+x_offset, 1, 62, 62, 1)
-        self._framebuf.rect(1+x_offset, 1, 62,  11, 1, 0)
-        # Channel 2
-        x_offset = 64
-        self._framebuf.rect(1+x_offset, 1, 62, 62, 1)
-        self._framebuf.rect(1+x_offset, 1, 62,  11, 1, 0)
+        for chan in self._channels:
+            x_offset = 64 * self._channels.index(chan)
+            self._framebuf.rect(1+x_offset, 1, 62, 62, 1)
+            self._framebuf.rect(1+x_offset, 1, 62,  11, 1, 0)
 
     async def _refresh(self) -> None:
         #start = time.ticks_us()
-        await self._refresh_channel(1, 0)
-        await self._refresh_channel(2, 64)
+        for chan in self._channels:
+            await self._refresh_channel(chan, 64 * self._channels.index(chan))
         self._driver.print_buffer(self._buffer)
         #print('_refresh total {}'.format(time.ticks_us() - start))
 
@@ -86,7 +86,7 @@ class ChannelView():
         self._framebuf.text(channel_status.name(), 18+x_offset, 3, not channel_status.output_enable())
         pass
 
-    async def _refresh_channel(self, channel: int, x_offset):
+    async def _refresh_channel(self, channel, x_offset):
         channel_status = await self._ctrl.get_channel_status(channel)
         self._framebuf.rect(0+x_offset, 0, 64, 64, 0, 1)
         self._framebuf.rect(1+x_offset, 1, 62, 62, 1, 0)
@@ -187,17 +187,29 @@ class ChannelView():
             self._v_selected_channel = None
             self._edit_mode = False
 
-    def _next_selection(self, cw=None):
-        if self._v_selected_channel == 1:
-            self._set_selection(None, 1 if cw else 2)
-        elif self._v_selected_channel == 2:
-            self._set_selection(None, 2 if cw else 1)
-        elif self._i_selected_channel == 1:
-            self._set_selection(2 if cw else 1, None)
-        elif self._i_selected_channel == 2:
-            self._set_selection(1 if cw else 2, None)
+    def _next_channel(self, channel, cw=None):
+        index = self._channels.index(channel)
+        if cw:
+            index += 1
+            if index >= len(self._channels):
+                return self._channels[0]
         else:
-            self._set_selection(1, None)
+            index -= 1
+        return self._channels[index]
+
+    def _next_selection(self, cw=None):
+        if self._v_selected_channel != None:
+            if cw:
+                self._set_selection(None, self._v_selected_channel)
+            else:
+                self._set_selection(None, self._next_channel(self._v_selected_channel, cw))
+        elif self._i_selected_channel != None:
+            if cw:
+                self._set_selection(self._next_channel(self._i_selected_channel, cw), None)
+            else:
+                self._set_selection(self._i_selected_channel, None)
+        else:
+            self._set_selection(self._channels[0], None)
 
     async def _encoder_press(self, button) -> None:
         while True:

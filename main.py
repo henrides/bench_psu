@@ -26,13 +26,6 @@ width = 128
 height = 64
 display_driver = ks0108.PioKs0108(width, height, Pin(8, Pin.OUT), Pin(12, Pin.OUT), Pin(0, Pin.OUT), Pin(13, Pin.OUT))
 
-# Override with simulated drivers in dev
-if 'Linux' in platform.platform():
-    from display_drivers import bmp
-    print('using bmp driver')
-
-    display_driver = bmp.Bmp('sim/display.bmp', width, height)
-
 
 spi = SPI(0, baudrate=8000000, polarity=1, phase=1, bits=8, firstbit=SPI.MSB, sck=Pin(18), miso=Pin(16), mosi=Pin(19))
 
@@ -68,10 +61,17 @@ fine_encoder_button = EButton(XPin(ioext, 5, Pin.IN, Pin.PULL_UP))
 ch1_out_en_button = EButton(XPin(ioext, 6, Pin.IN, Pin.OUT))
 ch2_out_en_button = EButton(XPin(ioext, 7, Pin.IN, Pin.OUT))
 
-#coarse_encoder_button = EButton(Pin(2, Pin.IN, Pin.PULL_UP))
-#fine_encoder_button = EButton(Pin(5, Pin.IN, Pin.PULL_UP))
-#ch1_out_en_button = EButton(Pin(6, Pin.IN, Pin.OUT))
-#ch2_out_en_button = EButton(Pin(7, Pin.IN, Pin.OUT))
+# Override with simulated drivers in dev
+if 'Linux' in platform.platform():
+    from display_drivers import bmp
+    print('Using bmp driver')
+
+    display_driver = bmp.Bmp('sim/display.bmp', width, height)
+
+    coarse_encoder_button = EButton(Pin(2, Pin.IN, Pin.PULL_UP))
+    fine_encoder_button = EButton(Pin(5, Pin.IN, Pin.PULL_UP))
+    ch1_out_en_button = EButton(Pin(6, Pin.IN, Pin.OUT))
+    ch2_out_en_button = EButton(Pin(7, Pin.IN, Pin.OUT))
 
 async def main():
     print('Starting...')
@@ -91,16 +91,14 @@ async def main():
                                      dac_ch2_iset,
                                      out_en_ch2)
     print('channel 2 initialized...')
-    ch_ctrl = channel_ctrl.ChannelCtrl(channel1, channel2)
+    ch_ctrl = channel_ctrl.ChannelCtrl(channel1, ch1_out_en_button, channel2, ch2_out_en_button)
     print('channel controller initialized...')
     ch_view = channel_view.ChannelView(ch_ctrl,
                                        display_driver,
                                        coarse_encoder,
                                        coarse_encoder_button,
                                        fine_encoder,
-                                       fine_encoder_button,
-                                       ch1_out_en_button,
-                                       ch2_out_en_button)
+                                       fine_encoder_button)
     print('view init done')
     await asyncio.gather(ch_view.task, channel1.task, channel2.task)
     print('Done')

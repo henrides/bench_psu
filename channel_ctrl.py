@@ -28,11 +28,27 @@ class ChannelStatus():
         return self._output_enable
 
 class ChannelCtrl():
-    def __init__(self, channel1, channel2):
-        self._channel1 = channel1
-        self._channel2 = channel2
+    def __init__(self, channel1, ch1_out_en_button, channel2, ch2_out_en_button):
+        self._channels = {}
+        self._channels[channel1.name()] = {
+            'rank': 1,
+            'channel': channel1,
+            'out_en_button': ch1_out_en_button
+        }
+        self._channels[channel2.name()] = {
+            'rank': 2,
+            'channel': channel2,
+            'out_en_button': ch2_out_en_button
+        }
 
-    async def get_channel_status(self, channel: int):
+    def get_channels(self):
+        sorted_channels = sorted(self._channels.items(), key=lambda x: x[1]['rank'])
+        return list(map(lambda x: x[0], sorted_channels))
+
+    def get_channel_output_enable_button(self, channel):
+        return self._channels[channel]['out_en_button']
+
+    async def get_channel_status(self, channel):
         channel = self._get_channel(channel)
         name = channel.name()
         v_sense = channel.v_sense()
@@ -42,17 +58,17 @@ class ChannelCtrl():
         output_enable = channel.output_enable()
         return ChannelStatus(name, v_sense, i_sense, v_set, i_set, output_enable)
 
-    def set_channel_v(self, channel: int, val):
+    def set_channel_v(self, channel, val):
         channel = self._get_channel(channel)
         channel.v_set(val)
 
-    def set_channel_i(self, channel: int, val):
+    def set_channel_i(self, channel, val):
         channel = self._get_channel(channel)
         channel.i_set(val)
 
-    def toggle_channel_output(self, channel: int):
+    def toggle_channel_output(self, channel):
         channel = self._get_channel(channel)
         channel.toggle_output()
 
-    def _get_channel(self, channel: int):
-        return self._channel1 if channel == 1 else self._channel2
+    def _get_channel(self, channel):
+        return self._channels[channel]['channel']
