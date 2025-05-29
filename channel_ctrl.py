@@ -28,28 +28,17 @@ class ChannelStatus():
         return self._output_enable
 
 class ChannelCtrl():
-    def __init__(self, channel1, ch1_out_en_button, channel2, ch2_out_en_button):
-        self._channels = {}
-        self._channels[channel1.name()] = {
-            'rank': 1,
-            'channel': channel1,
-            'out_en_button': ch1_out_en_button
-        }
-        self._channels[channel2.name()] = {
-            'rank': 2,
-            'channel': channel2,
-            'out_en_button': ch2_out_en_button
-        }
+    def __init__(self, channel_model):
+        self._channel_model = channel_model
 
-    def get_channels(self):
-        sorted_channels = sorted(self._channels.items(), key=lambda x: x[1]['rank'])
-        return list(map(lambda x: x[0], sorted_channels))
+    def get_channel_names(self):
+        return list(sorted(self._channel_model.get_channels().keys()))
 
-    def get_channel_output_enable_button(self, channel):
-        return self._channels[channel]['out_en_button']
+    def get_channel_output_enable_button(self, channel_name):
+        return self._channel_model.get_channel(channel_name).get_output_enable_button()
 
-    async def get_channel_status(self, channel):
-        channel = self._get_channel(channel)
+    async def get_channel_status(self, channel_name):
+        channel = self._get_channel(channel_name)
         name = channel.name()
         v_sense = channel.v_sense()
         i_sense = channel.i_sense()
@@ -58,17 +47,21 @@ class ChannelCtrl():
         output_enable = channel.output_enable()
         return ChannelStatus(name, v_sense, i_sense, v_set, i_set, output_enable)
 
-    def set_channel_v(self, channel, val):
-        channel = self._get_channel(channel)
-        channel.v_set(val)
+    def set_channel_v(self, channel_name, val):
+        self._channel_model.v_set(channel_name, val)
 
-    def set_channel_i(self, channel, val):
-        channel = self._get_channel(channel)
-        channel.i_set(val)
+    def set_channel_i(self, channel_name, val):
+        self._channel_model.i_set(channel_name, val)
 
-    def toggle_channel_output(self, channel):
-        channel = self._get_channel(channel)
+    def use_preset(self, preset_index):
+        self._channel_model.use_preset(preset_index)
+
+    def save_preset(self, preset_index):
+        self._channel_model.save_preset(preset_index)
+
+    def toggle_channel_output(self, channel_name):
+        channel = self._get_channel(channel_name)
         channel.toggle_output()
 
-    def _get_channel(self, channel):
-        return self._channels[channel]['channel']
+    def _get_channel(self, channel_name):
+        return self._channel_model.get_channel(channel_name)

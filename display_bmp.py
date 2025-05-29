@@ -33,13 +33,13 @@ class DisplayBmpFrame(wx.Frame):
     def _handle_click(self, event):
         point = event.GetPosition()
         if point.x < 64:
-            self._set_pin(6, 1)
+            self._set_pin(8, 1)
             time.sleep(0.060)
-            self._set_pin(6, 0)
+            self._set_pin(8, 0)
         else:
-            self._set_pin(7, 1)
-            time.sleep(0.060)
-            self._set_pin(7, 0)
+            self._set_pin(9, 1)
+            time.sleep(1.2)
+            self._set_pin(9, 0)
 
 
     def _set_pin(self, pin, v):

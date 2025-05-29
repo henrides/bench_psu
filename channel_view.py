@@ -18,7 +18,8 @@ class ChannelView():
                  coarse_encoder,
                  coarse_encoder_button,
                  fine_encoder,
-                 fine_encoder_button) -> None:
+                 fine_encoder_button,
+                 preset_buttons) -> None:
         self._ctrl = ctrl
         self._width = 128
         self._height = 64
@@ -45,7 +46,7 @@ class ChannelView():
                                    V_SET_FINE_INCREMENT,
                                    I_SET_FINE_INCREMENT))
 
-        self._channels = self._ctrl.get_channels()
+        self._channels = self._ctrl.get_channel_names()
 
         self._i_set = {}
         self._v_set = {}
@@ -58,12 +59,24 @@ class ChannelView():
             self._ch_out_en_button_task[chan] = asyncio.create_task(
                     self._out_enable_press(out_en_button, chan))
 
+        self._preset_buttons_press_tasks = {}
+        self._preset_buttons_long_press_tasks = {}
+        self._preset_buttons_long_press_release = []
+        for index, preset_button in enumerate(preset_buttons):
+            self._preset_buttons_press_tasks[index] = asyncio.create_task(
+                    self._preset_button_press(preset_button, index))
+            self._preset_buttons_long_press_tasks[index] = asyncio.create_task(
+                    self._preset_button_long_press(preset_button, index))
+            self._preset_buttons_long_press_release.append(False)
+
         self._init_framebuffer()
         self._i_selected_channel = None
         self._v_selected_channel = None
 
         self._edit_mode = False
         self._last_change_ticks = 0
+
+        self._saving_preset = None
 
         self.task = asyncio.create_task(self._go())
 
@@ -130,10 +143,19 @@ class ChannelView():
         self._framebuf.text('mA' if self._i_set[channel] < 1 else ' A',
                             44+x_offset, 50)
 
+        if self._saving_preset is not None:
+            message_x_offset = ((self._width - 64) // 2) - 8
+            message_y_offset = ((self._height - 16) // 2) - 4
+            self._framebuf.rect(message_x_offset, message_y_offset, 80, 24, 0, 1)
+            self._framebuf.rect(message_x_offset+2, message_y_offset+2, 76, 20, 1, 0)
+            self._framebuf.text('Preset {}'.format(self._saving_preset + 1),
+                                message_x_offset+8, message_y_offset+4, 1)
+            self._framebuf.text(' Saved. ', message_x_offset+8, message_y_offset+12, 1)
+
     def _truncate_four_digits(self, value):
         if value >= 100:
             return f'{value:.0f}'
-        if value >= 10:
+        elif value >= 10:
             return f'{value:.1f}'
         elif value >= 1:
             return f'{value:.2f}'
@@ -215,6 +237,7 @@ class ChannelView():
         while True:
             button.press.clear()
             await button.press.wait()
+            print("encoder pressed")
             if self._edit_mode:
                 if self._v_selected_channel != None:
                     self._ctrl.set_channel_v(self._v_selected_channel,
@@ -237,8 +260,31 @@ class ChannelView():
         while True:
             button.press.clear()
             await button.press.wait()
-            self._ctrl.toggle_channel_output(channel)
+            #self._ctrl.toggle_channel_output(channel)
+            self._ctrl.set_channel_v(channel, random.randint(3,12))
             await self._refresh()
+
+    async def _preset_button_press(self, button, index) -> None:
+        while True:
+            button.release.clear()
+            await button.release.wait()
+            if not self._preset_buttons_long_press_release[index]:
+                self._ctrl.use_preset(index)
+            else:
+                self._preset_buttons_long_press_release[index] = False
+            await self._refresh()
+
+    async def _preset_button_long_press(self, button, index) -> None:
+        while True:
+            button.long.clear()
+            await button.long.wait()
+            if self._saving_preset is None:
+                self._preset_buttons_long_press_release[index] = True
+                self._ctrl.save_preset(index)
+                self._saving_preset = index
+                await self._refresh()
+                await asyncio.sleep_ms(2000)
+                self._saving_preset = None
 
     async def _go(self) -> None:
         while True:
