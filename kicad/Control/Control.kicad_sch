@@ -7725,7 +7725,7 @@
 		)
 		(uuid "fca0bfc0-9058-49d5-8259-6a284a64afbd")
 	)
-	(global_label "CTRL_CH1_ADC_CS"
+	(global_label "CTRL_CH2_ADC_CS"
 		(shape input)
 		(at 139.7 67.31 0)
 		(fields_autoplaced yes)
@@ -7747,7 +7747,7 @@
 			)
 		)
 	)
-	(global_label "CH1_GND"
+	(global_label "CH2_GND"
 		(shape input)
 		(at 208.28 59.69 0)
 		(fields_autoplaced yes)
@@ -7791,7 +7791,7 @@
 			)
 		)
 	)
-	(global_label "CH2_GND"
+	(global_label "CH1_GND"
 		(shape input)
 		(at 245.11 85.09 180)
 		(fields_autoplaced yes)
@@ -7835,7 +7835,7 @@
 			)
 		)
 	)
-	(global_label "CH2_DAC_CS"
+	(global_label "CH1_DAC_CS"
 		(shape input)
 		(at 260.35 85.09 0)
 		(fields_autoplaced yes)
@@ -7857,7 +7857,7 @@
 			)
 		)
 	)
-	(global_label "CH2_OUT_EN"
+	(global_label "CH1_OUT_EN"
 		(shape input)
 		(at 212.09 91.44 0)
 		(fields_autoplaced yes)
@@ -7989,7 +7989,7 @@
 			)
 		)
 	)
-	(global_label "CH2_ADC_CS"
+	(global_label "CH1_ADC_CS"
 		(shape input)
 		(at 212.09 88.9 0)
 		(fields_autoplaced yes)
@@ -8121,7 +8121,7 @@
 			)
 		)
 	)
-	(global_label "CH2_OUT_EN"
+	(global_label "CH1_OUT_EN"
 		(shape input)
 		(at 260.35 87.63 0)
 		(fields_autoplaced yes)
@@ -8165,7 +8165,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH2_OUT_EN"
+	(global_label "CTRL_CH1_OUT_EN"
 		(shape input)
 		(at 189.23 91.44 180)
 		(fields_autoplaced yes)
@@ -8231,7 +8231,7 @@
 			)
 		)
 	)
-	(global_label "CH1_DAC_CS"
+	(global_label "CH2_DAC_CS"
 		(shape input)
 		(at 212.09 39.37 0)
 		(fields_autoplaced yes)
@@ -8319,7 +8319,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH2_DAC_CS"
+	(global_label "CTRL_CH1_DAC_CS"
 		(shape input)
 		(at 189.23 88.9 180)
 		(fields_autoplaced yes)
@@ -8341,7 +8341,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH2_OUT_EN"
+	(global_label "CTRL_CH1_OUT_EN"
 		(shape input)
 		(at 139.7 46.99 0)
 		(fields_autoplaced yes)
@@ -8385,7 +8385,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH1_ADC_CS"
+	(global_label "CTRL_CH2_ADC_CS"
 		(shape input)
 		(at 189.23 39.37 180)
 		(fields_autoplaced yes)
@@ -8451,7 +8451,7 @@
 			)
 		)
 	)
-	(global_label "CH1_DAC_CS"
+	(global_label "CH2_DAC_CS"
 		(shape input)
 		(at 260.35 38.1 0)
 		(fields_autoplaced yes)
@@ -8473,7 +8473,7 @@
 			)
 		)
 	)
-	(global_label "CH1_ADC_CS"
+	(global_label "CH2_ADC_CS"
 		(shape input)
 		(at 212.09 41.91 0)
 		(fields_autoplaced yes)
@@ -8495,7 +8495,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH1_DAC_CS"
+	(global_label "CTRL_CH2_DAC_CS"
 		(shape input)
 		(at 189.23 41.91 180)
 		(fields_autoplaced yes)
@@ -8583,7 +8583,7 @@
 			)
 		)
 	)
-	(global_label "CH1_ADC_CS"
+	(global_label "CH2_ADC_CS"
 		(shape input)
 		(at 260.35 35.56 0)
 		(fields_autoplaced yes)
@@ -8605,7 +8605,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH1_OUT_EN"
+	(global_label "CTRL_CH2_OUT_EN"
 		(shape input)
 		(at 139.7 59.69 0)
 		(fields_autoplaced yes)
@@ -8649,7 +8649,7 @@
 			)
 		)
 	)
-	(global_label "CH2_DAC_CS"
+	(global_label "CH1_DAC_CS"
 		(shape input)
 		(at 212.09 86.36 0)
 		(fields_autoplaced yes)
@@ -8693,7 +8693,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH2_DAC_CS"
+	(global_label "CTRL_CH1_DAC_CS"
 		(shape input)
 		(at 139.7 52.07 0)
 		(fields_autoplaced yes)
@@ -8737,7 +8737,7 @@
 			)
 		)
 	)
-	(global_label "CH2_ADC_CS"
+	(global_label "CH1_ADC_CS"
 		(shape input)
 		(at 260.35 82.55 0)
 		(fields_autoplaced yes)
@@ -8759,7 +8759,7 @@
 			)
 		)
 	)
-	(global_label "CH1_OUT_EN"
+	(global_label "CH2_OUT_EN"
 		(shape input)
 		(at 212.09 44.45 0)
 		(fields_autoplaced yes)
@@ -8781,7 +8781,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH2_ADC_CS"
+	(global_label "CTRL_CH1_ADC_CS"
 		(shape input)
 		(at 139.7 54.61 0)
 		(fields_autoplaced yes)
@@ -8803,7 +8803,7 @@
 			)
 		)
 	)
-	(global_label "CH2_GND"
+	(global_label "CH1_GND"
 		(shape input)
 		(at 208.28 106.68 0)
 		(fields_autoplaced yes)
@@ -8891,7 +8891,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH1_DAC_CS"
+	(global_label "CTRL_CH2_DAC_CS"
 		(shape input)
 		(at 139.7 64.77 0)
 		(fields_autoplaced yes)
@@ -8957,7 +8957,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH2_ADC_CS"
+	(global_label "CTRL_CH1_ADC_CS"
 		(shape input)
 		(at 189.23 86.36 180)
 		(fields_autoplaced yes)
@@ -8979,7 +8979,7 @@
 			)
 		)
 	)
-	(global_label "CTRL_CH1_OUT_EN"
+	(global_label "CTRL_CH2_OUT_EN"
 		(shape input)
 		(at 189.23 44.45 180)
 		(fields_autoplaced yes)
@@ -9089,7 +9089,7 @@
 			)
 		)
 	)
-	(global_label "CH1_GND"
+	(global_label "CH2_GND"
 		(shape input)
 		(at 245.11 38.1 180)
 		(fields_autoplaced yes)
@@ -9287,7 +9287,7 @@
 			)
 		)
 	)
-	(global_label "CH1_OUT_EN"
+	(global_label "CH2_OUT_EN"
 		(shape input)
 		(at 260.35 40.64 0)
 		(fields_autoplaced yes)
@@ -9976,7 +9976,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical"
+		(property "Footprint" "Altbutt:Connector Header 2x05"
 			(at 251.46 87.63 0)
 			(effects
 				(font
@@ -11977,7 +11977,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical"
+		(property "Footprint" "Altbutt:Connector Header 2x05"
 			(at 251.46 40.64 0)
 			(effects
 				(font
