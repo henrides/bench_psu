@@ -169,3 +169,15 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# project specific
+mock/
+mip_modules/
+sim/
+conf.json
+
+# Kicad ignore:
+kicad/Control/*-backups/
+kicad/Regulation/*-backups/
+kicad/*-backups/
+gerbers/
